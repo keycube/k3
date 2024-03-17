@@ -30,7 +30,7 @@ module corner(radius, screwhole, screwhead, thickness) {
     }        
 }
 
-corner(12, 1.05, 1.7, 1.25);
+corner(12, 1.1, 1.9, 1.25);
 
 $fa = 1.5;
 $fs = 0.15;
