@@ -25,19 +25,19 @@ module plate(size, matrixSize, switchSize, spacing) {
                     translate([size[0]/2, size[1]/2, 0])
                         cube([4, 4, thickness+1], true);
         }
-        translate([0, 0, thickness]) {
-            //cube([matrixSize*spacing, 1.5, 1.5], true);
-//            for (i = [-1 : 1 : matrixSize-1]) {
-                
-//            }
-            cube([1.5, size[1]-(spacing-switchSize), 1.5], true);
-            translate([spacing, 0, 0])
-            cube([1.5, size[1]-(spacing-switchSize), 1.5], true);
-            translate([-spacing, 0, 0])
-            cube([1.5, size[1]-(spacing-switchSize), 1.5], true);
+        
+        mirror_copy([0, 0, 1]) {
+            translate([0, 0, 1]) {
+                cube([matrixSize*spacing, thickness, 1], true);
+                cube([thickness, size[1]-(spacing-switchSize), 1], true);
+                translate([spacing, 0, 0])
+                cube([thickness, size[1]-(spacing-switchSize), 1], true);
+                translate([-spacing, 0, 0])
+                cube([thickness, size[1]-(spacing-switchSize), 1], true);
+            }
         }
     }
 }
 
 //plate([80, 80, 1.4], 4, 14.1, 19);
-plate([80, 40, 1.4], 4, 14.1, 19);
+plate([80, 40, 1.4], 4, 14.2, 19);
