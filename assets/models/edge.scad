@@ -15,6 +15,10 @@ module edge(radius, height, screwhole, thickness) {
             cube([radius-1, 2, height], true);
         translate([1, (radius-1)/-2, 0])
             cube([2, radius-1, height], true);
+        
+        rotate([0, 0, -45])
+        translate([radius/2+0.5, 0, 0])
+            cube([radius-2, 2, height], true);
     }
 }
 
