@@ -1,3 +1,5 @@
+use <utils/mirror_copy.scad>
+
 module edge(radius, height, screwhole, thickness) {
     difference() {
         union() {
@@ -24,31 +26,49 @@ module edge(radius, height, screwhole, thickness) {
             translate([radius/2+0.5, 0, 0])
                 cube([radius-2, 2, height], true);
             
-            // plate
+            // nut holder
+            mirror_copy([0, 0, 1])
             translate([4, -4, height/2-2])
-            cube([8, 8, 4], center = true);
+                cube([8, 8, 4], center = true);
+            
+            // plate holder
+            translate([1.5, -12+5+1, 0])
+                cube([3, 3, height], true);
+            translate([12-5-1, -1.5, , 0])
+                cube([3, 3, height], true);
         }
      
-        translate([3.5+screwhole, -3.5-screwhole, height/2])
-        cylinder(r=screwhole, h=16, $fn=200, center = true);
-        size = 4.5;
-        nheight = 2;
-        translate([0, 0, height/2-1-1.25])
-        rotate([0, 0, -45])
-            translate([size/2, 0, 0])
-            union() {
-                cube([size*2, size, nheight], center = true);
-                inradius = (size/2)/(sqrt(3)/2);
-                translate([size, 0, 0])
-                cylinder(r=inradius, h=nheight, $fn=6, center = true);
+        // nut holder hole
+        mirror_copy([0, 0, 1]) {            
+            translate([3.5+screwhole, -3.5-screwhole, height/2]) {            
+                cylinder(r=screwhole, h=16, $fn=200, center = true);
+                size = 4.2;
+                nheight = 2;
+                translate([0, 0, -1-1.25])
+
+                rotate([0, 0, 135])
+                    union() {
+                        inradius = (size/2)/(sqrt(3)/2);
+                        translate([size, 0, 0])
+                            cube([size*2, size, nheight], center = true);
+                        cylinder(r=inradius, h=nheight, $fn=6, center = true);
+                    }
             }
+        }
+        
+        // plate holder hole
+        translate([1, -12+5+1-0.125, 0])
+            cube([3, 1.75, height+1], true);
+        translate([12-5-1+0.125, -1, , 0])
+            cube([1.75, 3, height+1], true);
+
     }
 }
 
-edge(12, 76, 1.15, 1.25);
+edge(12, 36, 1.15, 1.25);
 
-$fa = 5;
-$fs = 1.5;
+$fa = 0.5;
+$fs = 0.15;
 
 //use <corner.scad>
 //translate([0, 0, 76/2])
