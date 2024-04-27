@@ -39,12 +39,12 @@ module edge(radius, height, screwhole, thickness) {
         }
      
         // nut holder hole
-        mirror_copy([0, 0, 1]) {            
+        mirror_copy([0, 0, 1]) {
             translate([3.5+screwhole, -3.5-screwhole, height/2]) {            
                 cylinder(r=screwhole, h=16, $fn=200, center = true);
                 size = 4.2;
-                nheight = 2;
-                translate([0, 0, -1-1.25])
+                nheight = 3;
+                translate([0, 0, -1.5-1.25])
 
                 rotate([0, 0, 135])
                     union() {
@@ -65,7 +65,7 @@ module edge(radius, height, screwhole, thickness) {
     }
 }
 
-edge(12, 36, 1.15, 1.25);
+edge(12, 76, 1.15, 1.25);
 
 $fa = 0.5;
 $fs = 0.15;
