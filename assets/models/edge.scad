@@ -28,8 +28,8 @@ module edge(radius, height, screwhole, thickness) {
             
             // nut holder
             mirror_copy([0, 0, 1])
-            translate([4, -4, height/2-2])
-                cube([8, 8, 4], center = true);
+            translate([4, -4, height/2-2.5])
+                cube([8, 8, 5], center = true);
             
             // plate holder
             translate([1.5, -12+5+1, 0])
